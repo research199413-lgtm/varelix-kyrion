@@ -1,0 +1,1679 @@
+2026-04-20 19:03:39 | INFO     | run                  | ======================================================================
+2026-04-20 19:03:39 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 19:03:39 | INFO     | run                  | ======================================================================
+2026-04-20 19:03:39 | INFO     | run                  | Execution Time: 2026-04-21 00:03:39 PKT
+2026-04-20 19:03:39 | INFO     | run                  | Configuration:
+2026-04-20 19:03:39 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 19:03:39 | INFO     | run                  |    - Data directory: data
+2026-04-20 19:03:39 | INFO     | run                  |    - Log directory: logs
+2026-04-20 19:03:39 | INFO     | run                  | ======================================================================
+2026-04-20 19:03:39 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 19:03:39 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 19:03:42 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 19:03:43 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 19:03:43 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 19:03:43 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 19:03:43 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 19:03:43 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 19:03:43 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 19:03:43 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 19:03:43 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 19:03:43 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 19:03:43 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 19:03:43 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:03:43 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 19:03:43 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 19:03:43 | INFO     | clean_data           | Cleaning data...
+2026-04-20 19:03:43 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 19:03:43 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:03:43 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 19:03:43 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 19:03:43 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 19:03:43 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 19:03:43 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 19:03:43 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 19:03:43 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 19:03:43 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 19:03:43 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 19:03:43 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 19:03:43 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 19:03:43 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:03:43 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:03:43 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 19:03:44 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmpqhsnkfj1.xlsx
+2026-04-20 19:03:44 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 19:03:44 | INFO     | save_data            | ✅ Data saved successfully (488 total rows, 42650 bytes)
+2026-04-20 19:03:44 | INFO     | run                  | ======================================================================
+2026-04-20 19:03:44 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 19:03:44 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 19:03:44 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 19:03:44 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 19:03:44 | INFO     | run                  |    - Timestamp: 2026-04-21 00:03:39
+2026-04-20 19:03:44 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:03:44 | INFO     | run                  | ======================================================================
+2026-04-20 19:03:44 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 19:03:44 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 0, 'MINUTE': 3, 'DATETIME': '2026-04-21 00:03'}
+2026-04-20 19:08:44 | INFO     | run                  | ======================================================================
+2026-04-20 19:08:44 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 19:08:44 | INFO     | run                  | ======================================================================
+2026-04-20 19:08:44 | INFO     | run                  | Execution Time: 2026-04-21 00:08:44 PKT
+2026-04-20 19:08:44 | INFO     | run                  | Configuration:
+2026-04-20 19:08:44 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 19:08:44 | INFO     | run                  |    - Data directory: data
+2026-04-20 19:08:44 | INFO     | run                  |    - Log directory: logs
+2026-04-20 19:08:44 | INFO     | run                  | ======================================================================
+2026-04-20 19:08:44 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 19:08:44 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 19:08:47 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 19:08:51 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 19:08:51 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 19:08:51 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 19:08:51 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 19:08:51 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 19:08:51 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 19:08:51 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 19:08:51 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 19:08:51 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 19:08:51 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 19:08:51 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:08:51 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 19:08:51 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 19:08:51 | INFO     | clean_data           | Cleaning data...
+2026-04-20 19:08:51 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 19:08:51 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:08:51 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 19:08:51 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 19:08:51 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 19:08:51 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 19:08:51 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 19:08:51 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 19:08:51 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 19:08:51 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 19:08:51 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 19:08:51 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 19:08:51 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 19:08:51 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:08:51 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:08:51 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 19:08:51 | DEBUG    | save_data            | Loaded 488 existing rows
+2026-04-20 19:08:51 | DEBUG    | save_data            | Combined to 976 rows
+2026-04-20 19:08:51 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 19:08:51 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmp3a0aphmh.xlsx
+2026-04-20 19:08:51 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 19:08:51 | INFO     | save_data            | ✅ Data saved successfully (976 total rows, 80011 bytes)
+2026-04-20 19:08:51 | INFO     | run                  | ======================================================================
+2026-04-20 19:08:51 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 19:08:51 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 19:08:51 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 19:08:51 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 19:08:51 | INFO     | run                  |    - Timestamp: 2026-04-21 00:08:44
+2026-04-20 19:08:51 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:08:51 | INFO     | run                  | ======================================================================
+2026-04-20 19:08:51 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 19:08:51 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 0, 'MINUTE': 8, 'DATETIME': '2026-04-21 00:08'}
+2026-04-20 19:13:51 | INFO     | run                  | ======================================================================
+2026-04-20 19:13:51 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 19:13:51 | INFO     | run                  | ======================================================================
+2026-04-20 19:13:51 | INFO     | run                  | Execution Time: 2026-04-21 00:13:51 PKT
+2026-04-20 19:13:51 | INFO     | run                  | Configuration:
+2026-04-20 19:13:51 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 19:13:51 | INFO     | run                  |    - Data directory: data
+2026-04-20 19:13:51 | INFO     | run                  |    - Log directory: logs
+2026-04-20 19:13:51 | INFO     | run                  | ======================================================================
+2026-04-20 19:13:51 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 19:13:51 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 19:13:55 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 19:13:57 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 19:13:57 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 19:13:57 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 19:13:57 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 19:13:57 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 19:13:57 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 19:13:57 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 19:13:57 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 19:13:57 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 19:13:57 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 19:13:57 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:13:57 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 19:13:57 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 19:13:57 | INFO     | clean_data           | Cleaning data...
+2026-04-20 19:13:57 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 19:13:57 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:13:57 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 19:13:57 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 19:13:57 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 19:13:57 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 19:13:57 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 19:13:57 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 19:13:57 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 19:13:57 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 19:13:57 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 19:13:57 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 19:13:57 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 19:13:57 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:13:57 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:13:57 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 19:13:57 | DEBUG    | save_data            | Loaded 976 existing rows
+2026-04-20 19:13:57 | DEBUG    | save_data            | Combined to 1464 rows
+2026-04-20 19:13:57 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 19:13:57 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmpl4etljq0.xlsx
+2026-04-20 19:13:57 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 19:13:57 | INFO     | save_data            | ✅ Data saved successfully (1464 total rows, 117427 bytes)
+2026-04-20 19:13:57 | INFO     | run                  | ======================================================================
+2026-04-20 19:13:57 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 19:13:57 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 19:13:57 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 19:13:57 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 19:13:57 | INFO     | run                  |    - Timestamp: 2026-04-21 00:13:51
+2026-04-20 19:13:57 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:13:57 | INFO     | run                  | ======================================================================
+2026-04-20 19:13:57 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 19:13:57 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 0, 'MINUTE': 13, 'DATETIME': '2026-04-21 00:13'}
+2026-04-20 19:18:58 | INFO     | run                  | ======================================================================
+2026-04-20 19:18:58 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 19:18:58 | INFO     | run                  | ======================================================================
+2026-04-20 19:18:58 | INFO     | run                  | Execution Time: 2026-04-21 00:18:58 PKT
+2026-04-20 19:18:58 | INFO     | run                  | Configuration:
+2026-04-20 19:18:58 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 19:18:58 | INFO     | run                  |    - Data directory: data
+2026-04-20 19:18:58 | INFO     | run                  |    - Log directory: logs
+2026-04-20 19:18:58 | INFO     | run                  | ======================================================================
+2026-04-20 19:18:58 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 19:18:58 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 19:19:01 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 19:19:02 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 19:19:02 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 19:19:02 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 19:19:02 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 19:19:02 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 19:19:02 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 19:19:02 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 19:19:02 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 19:19:02 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 19:19:02 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 19:19:02 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:19:02 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 19:19:02 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 19:19:02 | INFO     | clean_data           | Cleaning data...
+2026-04-20 19:19:02 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 19:19:02 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:19:02 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 19:19:02 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 19:19:02 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 19:19:02 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 19:19:02 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 19:19:02 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 19:19:02 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 19:19:02 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 19:19:02 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 19:19:02 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 19:19:02 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 19:19:02 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:19:02 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:19:02 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 19:19:02 | DEBUG    | save_data            | Loaded 1464 existing rows
+2026-04-20 19:19:02 | DEBUG    | save_data            | Combined to 1952 rows
+2026-04-20 19:19:02 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 19:19:02 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmpm1ofk2op.xlsx
+2026-04-20 19:19:02 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 19:19:02 | INFO     | save_data            | ✅ Data saved successfully (1952 total rows, 154854 bytes)
+2026-04-20 19:19:02 | INFO     | run                  | ======================================================================
+2026-04-20 19:19:02 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 19:19:02 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 19:19:02 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 19:19:02 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 19:19:02 | INFO     | run                  |    - Timestamp: 2026-04-21 00:18:58
+2026-04-20 19:19:02 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:19:02 | INFO     | run                  | ======================================================================
+2026-04-20 19:19:02 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 19:19:02 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 0, 'MINUTE': 18, 'DATETIME': '2026-04-21 00:18'}
+2026-04-20 19:24:03 | INFO     | run                  | ======================================================================
+2026-04-20 19:24:03 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 19:24:03 | INFO     | run                  | ======================================================================
+2026-04-20 19:24:03 | INFO     | run                  | Execution Time: 2026-04-21 00:24:03 PKT
+2026-04-20 19:24:03 | INFO     | run                  | Configuration:
+2026-04-20 19:24:03 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 19:24:03 | INFO     | run                  |    - Data directory: data
+2026-04-20 19:24:03 | INFO     | run                  |    - Log directory: logs
+2026-04-20 19:24:03 | INFO     | run                  | ======================================================================
+2026-04-20 19:24:03 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 19:24:03 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 19:24:07 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 19:24:09 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 19:24:09 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 19:24:09 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 19:24:09 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 19:24:09 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 19:24:09 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 19:24:09 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 19:24:09 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 19:24:09 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 19:24:09 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 19:24:09 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:24:09 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 19:24:09 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 19:24:09 | INFO     | clean_data           | Cleaning data...
+2026-04-20 19:24:09 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 19:24:09 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:24:09 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 19:24:09 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 19:24:09 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 19:24:09 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 19:24:09 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 19:24:09 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 19:24:09 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 19:24:09 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 19:24:09 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 19:24:09 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 19:24:09 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 19:24:09 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:24:09 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:24:09 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 19:24:09 | DEBUG    | save_data            | Loaded 1952 existing rows
+2026-04-20 19:24:09 | DEBUG    | save_data            | Combined to 2440 rows
+2026-04-20 19:24:09 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 19:24:09 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmp1brwux5x.xlsx
+2026-04-20 19:24:09 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 19:24:09 | INFO     | save_data            | ✅ Data saved successfully (2440 total rows, 192300 bytes)
+2026-04-20 19:24:09 | INFO     | run                  | ======================================================================
+2026-04-20 19:24:09 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 19:24:09 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 19:24:09 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 19:24:09 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 19:24:09 | INFO     | run                  |    - Timestamp: 2026-04-21 00:24:03
+2026-04-20 19:24:09 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:24:09 | INFO     | run                  | ======================================================================
+2026-04-20 19:24:09 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 19:24:09 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 0, 'MINUTE': 24, 'DATETIME': '2026-04-21 00:24'}
+2026-04-20 19:29:10 | INFO     | run                  | ======================================================================
+2026-04-20 19:29:10 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 19:29:10 | INFO     | run                  | ======================================================================
+2026-04-20 19:29:10 | INFO     | run                  | Execution Time: 2026-04-21 00:29:10 PKT
+2026-04-20 19:29:10 | INFO     | run                  | Configuration:
+2026-04-20 19:29:10 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 19:29:10 | INFO     | run                  |    - Data directory: data
+2026-04-20 19:29:10 | INFO     | run                  |    - Log directory: logs
+2026-04-20 19:29:10 | INFO     | run                  | ======================================================================
+2026-04-20 19:29:10 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 19:29:10 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 19:29:12 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 19:29:14 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 19:29:14 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 19:29:14 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 19:29:14 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 19:29:14 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 19:29:14 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 19:29:14 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 19:29:14 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 19:29:14 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 19:29:14 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 19:29:14 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:29:14 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 19:29:14 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 19:29:14 | INFO     | clean_data           | Cleaning data...
+2026-04-20 19:29:14 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 19:29:14 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:29:14 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 19:29:14 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 19:29:14 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 19:29:14 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 19:29:14 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 19:29:14 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 19:29:14 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 19:29:14 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 19:29:14 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 19:29:14 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 19:29:14 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 19:29:14 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:29:14 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:29:14 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 19:29:14 | DEBUG    | save_data            | Loaded 2440 existing rows
+2026-04-20 19:29:14 | DEBUG    | save_data            | Combined to 2928 rows
+2026-04-20 19:29:14 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 19:29:15 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmp3_yyo9vt.xlsx
+2026-04-20 19:29:15 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 19:29:15 | INFO     | save_data            | ✅ Data saved successfully (2928 total rows, 229672 bytes)
+2026-04-20 19:29:15 | INFO     | run                  | ======================================================================
+2026-04-20 19:29:15 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 19:29:15 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 19:29:15 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 19:29:15 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 19:29:15 | INFO     | run                  |    - Timestamp: 2026-04-21 00:29:10
+2026-04-20 19:29:15 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:29:15 | INFO     | run                  | ======================================================================
+2026-04-20 19:29:15 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 19:29:15 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 0, 'MINUTE': 29, 'DATETIME': '2026-04-21 00:29'}
+2026-04-20 19:34:15 | INFO     | run                  | ======================================================================
+2026-04-20 19:34:15 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 19:34:15 | INFO     | run                  | ======================================================================
+2026-04-20 19:34:15 | INFO     | run                  | Execution Time: 2026-04-21 00:34:15 PKT
+2026-04-20 19:34:15 | INFO     | run                  | Configuration:
+2026-04-20 19:34:15 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 19:34:15 | INFO     | run                  |    - Data directory: data
+2026-04-20 19:34:15 | INFO     | run                  |    - Log directory: logs
+2026-04-20 19:34:15 | INFO     | run                  | ======================================================================
+2026-04-20 19:34:15 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 19:34:15 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 19:34:18 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 19:34:20 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 19:34:20 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 19:34:20 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 19:34:20 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 19:34:20 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 19:34:20 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 19:34:20 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 19:34:20 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 19:34:20 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 19:34:20 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 19:34:20 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:34:20 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 19:34:20 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 19:34:20 | INFO     | clean_data           | Cleaning data...
+2026-04-20 19:34:20 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 19:34:20 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:34:20 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 19:34:20 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 19:34:20 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 19:34:20 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 19:34:20 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 19:34:20 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 19:34:20 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 19:34:20 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 19:34:20 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 19:34:20 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 19:34:20 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 19:34:20 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:34:20 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:34:20 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 19:34:20 | DEBUG    | save_data            | Loaded 2928 existing rows
+2026-04-20 19:34:20 | DEBUG    | save_data            | Combined to 3416 rows
+2026-04-20 19:34:20 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 19:34:21 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmpiomihpdp.xlsx
+2026-04-20 19:34:21 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 19:34:21 | INFO     | save_data            | ✅ Data saved successfully (3416 total rows, 267024 bytes)
+2026-04-20 19:34:21 | INFO     | run                  | ======================================================================
+2026-04-20 19:34:21 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 19:34:21 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 19:34:21 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 19:34:21 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 19:34:21 | INFO     | run                  |    - Timestamp: 2026-04-21 00:34:15
+2026-04-20 19:34:21 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:34:21 | INFO     | run                  | ======================================================================
+2026-04-20 19:34:21 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 19:34:21 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 0, 'MINUTE': 34, 'DATETIME': '2026-04-21 00:34'}
+2026-04-20 19:39:21 | INFO     | run                  | ======================================================================
+2026-04-20 19:39:21 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 19:39:21 | INFO     | run                  | ======================================================================
+2026-04-20 19:39:21 | INFO     | run                  | Execution Time: 2026-04-21 00:39:21 PKT
+2026-04-20 19:39:21 | INFO     | run                  | Configuration:
+2026-04-20 19:39:21 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 19:39:21 | INFO     | run                  |    - Data directory: data
+2026-04-20 19:39:21 | INFO     | run                  |    - Log directory: logs
+2026-04-20 19:39:21 | INFO     | run                  | ======================================================================
+2026-04-20 19:39:21 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 19:39:21 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 19:39:24 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 19:39:25 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 19:39:25 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 19:39:25 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 19:39:25 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 19:39:25 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 19:39:25 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 19:39:25 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 19:39:25 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 19:39:25 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 19:39:25 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 19:39:25 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:39:25 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 19:39:25 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 19:39:25 | INFO     | clean_data           | Cleaning data...
+2026-04-20 19:39:25 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 19:39:25 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:39:25 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 19:39:25 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 19:39:25 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 19:39:25 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 19:39:25 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 19:39:25 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 19:39:25 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 19:39:25 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 19:39:25 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 19:39:26 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 19:39:26 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 19:39:26 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:39:26 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:39:26 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 19:39:26 | DEBUG    | save_data            | Loaded 3416 existing rows
+2026-04-20 19:39:26 | DEBUG    | save_data            | Combined to 3904 rows
+2026-04-20 19:39:26 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 19:39:27 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmp_wb91b48.xlsx
+2026-04-20 19:39:27 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 19:39:27 | INFO     | save_data            | ✅ Data saved successfully (3904 total rows, 304384 bytes)
+2026-04-20 19:39:27 | INFO     | run                  | ======================================================================
+2026-04-20 19:39:27 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 19:39:27 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 19:39:27 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 19:39:27 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 19:39:27 | INFO     | run                  |    - Timestamp: 2026-04-21 00:39:21
+2026-04-20 19:39:27 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:39:27 | INFO     | run                  | ======================================================================
+2026-04-20 19:39:27 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 19:39:27 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 0, 'MINUTE': 39, 'DATETIME': '2026-04-21 00:39'}
+2026-04-20 19:44:27 | INFO     | run                  | ======================================================================
+2026-04-20 19:44:27 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 19:44:27 | INFO     | run                  | ======================================================================
+2026-04-20 19:44:27 | INFO     | run                  | Execution Time: 2026-04-21 00:44:27 PKT
+2026-04-20 19:44:27 | INFO     | run                  | Configuration:
+2026-04-20 19:44:27 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 19:44:27 | INFO     | run                  |    - Data directory: data
+2026-04-20 19:44:27 | INFO     | run                  |    - Log directory: logs
+2026-04-20 19:44:27 | INFO     | run                  | ======================================================================
+2026-04-20 19:44:27 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 19:44:27 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 19:44:30 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 19:44:33 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 19:44:33 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 19:44:33 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 19:44:33 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 19:44:33 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 19:44:33 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 19:44:33 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 19:44:33 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 19:44:33 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 19:44:33 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 19:44:33 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:44:33 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 19:44:33 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 19:44:33 | INFO     | clean_data           | Cleaning data...
+2026-04-20 19:44:33 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 19:44:33 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:44:33 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 19:44:33 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 19:44:33 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 19:44:33 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 19:44:33 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 19:44:33 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 19:44:33 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 19:44:33 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 19:44:33 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 19:44:33 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 19:44:33 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 19:44:33 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:44:33 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:44:33 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 19:44:33 | DEBUG    | save_data            | Loaded 3904 existing rows
+2026-04-20 19:44:33 | DEBUG    | save_data            | Combined to 4392 rows
+2026-04-20 19:44:33 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 19:44:34 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmpkawq8ix0.xlsx
+2026-04-20 19:44:34 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 19:44:34 | INFO     | save_data            | ✅ Data saved successfully (4392 total rows, 341779 bytes)
+2026-04-20 19:44:34 | INFO     | run                  | ======================================================================
+2026-04-20 19:44:34 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 19:44:34 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 19:44:34 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 19:44:34 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 19:44:34 | INFO     | run                  |    - Timestamp: 2026-04-21 00:44:27
+2026-04-20 19:44:34 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:44:34 | INFO     | run                  | ======================================================================
+2026-04-20 19:44:34 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 19:44:34 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 0, 'MINUTE': 44, 'DATETIME': '2026-04-21 00:44'}
+2026-04-20 19:49:34 | INFO     | run                  | ======================================================================
+2026-04-20 19:49:34 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 19:49:34 | INFO     | run                  | ======================================================================
+2026-04-20 19:49:34 | INFO     | run                  | Execution Time: 2026-04-21 00:49:34 PKT
+2026-04-20 19:49:34 | INFO     | run                  | Configuration:
+2026-04-20 19:49:34 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 19:49:34 | INFO     | run                  |    - Data directory: data
+2026-04-20 19:49:34 | INFO     | run                  |    - Log directory: logs
+2026-04-20 19:49:34 | INFO     | run                  | ======================================================================
+2026-04-20 19:49:34 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 19:49:34 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 19:49:37 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 19:49:39 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 19:49:39 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 19:49:39 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 19:49:39 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 19:49:39 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 19:49:39 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 19:49:39 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 19:49:39 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 19:49:39 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 19:49:39 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 19:49:39 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:49:39 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 19:49:39 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 19:49:39 | INFO     | clean_data           | Cleaning data...
+2026-04-20 19:49:39 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 19:49:39 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:49:39 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 19:49:39 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 19:49:39 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 19:49:39 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 19:49:39 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 19:49:39 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 19:49:39 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 19:49:39 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 19:49:39 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 19:49:39 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 19:49:39 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 19:49:39 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:49:39 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:49:39 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 19:49:40 | DEBUG    | save_data            | Loaded 4392 existing rows
+2026-04-20 19:49:40 | DEBUG    | save_data            | Combined to 4880 rows
+2026-04-20 19:49:40 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 19:49:41 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmpiufff18_.xlsx
+2026-04-20 19:49:41 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 19:49:41 | INFO     | save_data            | ✅ Data saved successfully (4880 total rows, 379174 bytes)
+2026-04-20 19:49:41 | INFO     | run                  | ======================================================================
+2026-04-20 19:49:41 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 19:49:41 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 19:49:41 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 19:49:41 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 19:49:41 | INFO     | run                  |    - Timestamp: 2026-04-21 00:49:34
+2026-04-20 19:49:41 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:49:41 | INFO     | run                  | ======================================================================
+2026-04-20 19:49:41 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 19:49:41 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 0, 'MINUTE': 49, 'DATETIME': '2026-04-21 00:49'}
+2026-04-20 19:54:41 | INFO     | run                  | ======================================================================
+2026-04-20 19:54:41 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 19:54:41 | INFO     | run                  | ======================================================================
+2026-04-20 19:54:41 | INFO     | run                  | Execution Time: 2026-04-21 00:54:41 PKT
+2026-04-20 19:54:41 | INFO     | run                  | Configuration:
+2026-04-20 19:54:41 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 19:54:41 | INFO     | run                  |    - Data directory: data
+2026-04-20 19:54:41 | INFO     | run                  |    - Log directory: logs
+2026-04-20 19:54:41 | INFO     | run                  | ======================================================================
+2026-04-20 19:54:41 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 19:54:41 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 19:54:48 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 19:54:49 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 19:54:49 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 19:54:49 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 19:54:49 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 19:54:49 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 19:54:49 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 19:54:49 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 19:54:49 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 19:54:49 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 19:54:49 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 19:54:49 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:54:49 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 19:54:49 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 19:54:49 | INFO     | clean_data           | Cleaning data...
+2026-04-20 19:54:49 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 19:54:49 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:54:49 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 19:54:49 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 19:54:49 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 19:54:49 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 19:54:49 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 19:54:49 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 19:54:49 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 19:54:49 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 19:54:49 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 19:54:49 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 19:54:49 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 19:54:49 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:54:49 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:54:49 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 19:54:50 | DEBUG    | save_data            | Loaded 4880 existing rows
+2026-04-20 19:54:50 | DEBUG    | save_data            | Combined to 5368 rows
+2026-04-20 19:54:50 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 19:54:51 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmp_og_s1zj.xlsx
+2026-04-20 19:54:51 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 19:54:51 | INFO     | save_data            | ✅ Data saved successfully (5368 total rows, 416601 bytes)
+2026-04-20 19:54:51 | INFO     | run                  | ======================================================================
+2026-04-20 19:54:51 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 19:54:51 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 19:54:51 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 19:54:51 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 19:54:51 | INFO     | run                  |    - Timestamp: 2026-04-21 00:54:41
+2026-04-20 19:54:51 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:54:51 | INFO     | run                  | ======================================================================
+2026-04-20 19:54:51 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 19:54:51 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 0, 'MINUTE': 54, 'DATETIME': '2026-04-21 00:54'}
+2026-04-20 19:59:51 | INFO     | run                  | ======================================================================
+2026-04-20 19:59:51 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 19:59:51 | INFO     | run                  | ======================================================================
+2026-04-20 19:59:51 | INFO     | run                  | Execution Time: 2026-04-21 00:59:51 PKT
+2026-04-20 19:59:51 | INFO     | run                  | Configuration:
+2026-04-20 19:59:51 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 19:59:51 | INFO     | run                  |    - Data directory: data
+2026-04-20 19:59:51 | INFO     | run                  |    - Log directory: logs
+2026-04-20 19:59:51 | INFO     | run                  | ======================================================================
+2026-04-20 19:59:51 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 19:59:51 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 19:59:55 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 19:59:57 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 19:59:57 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 19:59:57 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 19:59:57 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 19:59:57 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 19:59:57 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 19:59:57 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 19:59:57 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 19:59:57 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 19:59:57 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 19:59:57 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:59:57 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 19:59:57 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 19:59:57 | INFO     | clean_data           | Cleaning data...
+2026-04-20 19:59:57 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 19:59:57 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 19:59:57 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 19:59:57 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 19:59:57 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 19:59:57 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 19:59:57 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 19:59:57 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 19:59:57 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 19:59:57 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 19:59:57 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 19:59:57 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 19:59:57 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 19:59:57 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:59:57 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:59:57 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 19:59:57 | DEBUG    | save_data            | Loaded 5368 existing rows
+2026-04-20 19:59:57 | DEBUG    | save_data            | Combined to 5856 rows
+2026-04-20 19:59:57 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 19:59:58 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmpzbhb3c19.xlsx
+2026-04-20 19:59:58 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 19:59:58 | INFO     | save_data            | ✅ Data saved successfully (5856 total rows, 453977 bytes)
+2026-04-20 19:59:58 | INFO     | run                  | ======================================================================
+2026-04-20 19:59:58 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 19:59:58 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 19:59:58 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 19:59:58 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 19:59:58 | INFO     | run                  |    - Timestamp: 2026-04-21 00:59:51
+2026-04-20 19:59:58 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 19:59:58 | INFO     | run                  | ======================================================================
+2026-04-20 19:59:58 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 19:59:58 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 0, 'MINUTE': 59, 'DATETIME': '2026-04-21 00:59'}
+2026-04-20 20:04:59 | INFO     | run                  | ======================================================================
+2026-04-20 20:04:59 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 20:04:59 | INFO     | run                  | ======================================================================
+2026-04-20 20:04:59 | INFO     | run                  | Execution Time: 2026-04-21 01:04:59 PKT
+2026-04-20 20:04:59 | INFO     | run                  | Configuration:
+2026-04-20 20:04:59 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 20:04:59 | INFO     | run                  |    - Data directory: data
+2026-04-20 20:04:59 | INFO     | run                  |    - Log directory: logs
+2026-04-20 20:04:59 | INFO     | run                  | ======================================================================
+2026-04-20 20:04:59 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 20:04:59 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 20:05:02 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 20:05:03 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 20:05:03 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 20:05:03 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 20:05:03 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 20:05:03 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 20:05:03 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 20:05:03 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 20:05:03 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 20:05:03 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 20:05:03 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 20:05:03 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:05:03 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 20:05:03 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 20:05:03 | INFO     | clean_data           | Cleaning data...
+2026-04-20 20:05:03 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 20:05:03 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:05:03 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 20:05:03 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 20:05:03 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 20:05:03 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 20:05:03 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 20:05:03 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 20:05:03 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 20:05:03 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 20:05:03 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 20:05:03 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 20:05:03 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 20:05:03 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:05:03 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:05:03 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 20:05:04 | DEBUG    | save_data            | Loaded 5856 existing rows
+2026-04-20 20:05:04 | DEBUG    | save_data            | Combined to 6344 rows
+2026-04-20 20:05:04 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 20:05:05 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmpfif0tme8.xlsx
+2026-04-20 20:05:05 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 20:05:05 | INFO     | save_data            | ✅ Data saved successfully (6344 total rows, 491129 bytes)
+2026-04-20 20:05:05 | INFO     | run                  | ======================================================================
+2026-04-20 20:05:05 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 20:05:05 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 20:05:05 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 20:05:05 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 20:05:05 | INFO     | run                  |    - Timestamp: 2026-04-21 01:04:59
+2026-04-20 20:05:05 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:05:05 | INFO     | run                  | ======================================================================
+2026-04-20 20:05:05 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 20:05:05 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 1, 'MINUTE': 4, 'DATETIME': '2026-04-21 01:04'}
+2026-04-20 20:10:05 | INFO     | run                  | ======================================================================
+2026-04-20 20:10:05 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 20:10:05 | INFO     | run                  | ======================================================================
+2026-04-20 20:10:05 | INFO     | run                  | Execution Time: 2026-04-21 01:10:05 PKT
+2026-04-20 20:10:05 | INFO     | run                  | Configuration:
+2026-04-20 20:10:05 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 20:10:05 | INFO     | run                  |    - Data directory: data
+2026-04-20 20:10:05 | INFO     | run                  |    - Log directory: logs
+2026-04-20 20:10:05 | INFO     | run                  | ======================================================================
+2026-04-20 20:10:05 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 20:10:05 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 20:10:09 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 20:10:11 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 20:10:11 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 20:10:11 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 20:10:11 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 20:10:11 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 20:10:11 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 20:10:11 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 20:10:11 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 20:10:11 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 20:10:11 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 20:10:11 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:10:11 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 20:10:11 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 20:10:11 | INFO     | clean_data           | Cleaning data...
+2026-04-20 20:10:11 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 20:10:11 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:10:11 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 20:10:11 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 20:10:11 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 20:10:11 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 20:10:11 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 20:10:11 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 20:10:11 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 20:10:11 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 20:10:11 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 20:10:11 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 20:10:11 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 20:10:11 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:10:11 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:10:11 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 20:10:12 | DEBUG    | save_data            | Loaded 6344 existing rows
+2026-04-20 20:10:12 | DEBUG    | save_data            | Combined to 6832 rows
+2026-04-20 20:10:12 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 20:10:13 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmpkf_9cipk.xlsx
+2026-04-20 20:10:13 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 20:10:13 | INFO     | save_data            | ✅ Data saved successfully (6832 total rows, 528493 bytes)
+2026-04-20 20:10:13 | INFO     | run                  | ======================================================================
+2026-04-20 20:10:13 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 20:10:13 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 20:10:13 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 20:10:13 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 20:10:13 | INFO     | run                  |    - Timestamp: 2026-04-21 01:10:05
+2026-04-20 20:10:13 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:10:13 | INFO     | run                  | ======================================================================
+2026-04-20 20:10:13 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 20:10:13 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 1, 'MINUTE': 10, 'DATETIME': '2026-04-21 01:10'}
+2026-04-20 20:15:13 | INFO     | run                  | ======================================================================
+2026-04-20 20:15:13 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 20:15:13 | INFO     | run                  | ======================================================================
+2026-04-20 20:15:13 | INFO     | run                  | Execution Time: 2026-04-21 01:15:13 PKT
+2026-04-20 20:15:13 | INFO     | run                  | Configuration:
+2026-04-20 20:15:13 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 20:15:13 | INFO     | run                  |    - Data directory: data
+2026-04-20 20:15:13 | INFO     | run                  |    - Log directory: logs
+2026-04-20 20:15:13 | INFO     | run                  | ======================================================================
+2026-04-20 20:15:13 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 20:15:13 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 20:15:16 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 20:15:18 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 20:15:18 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 20:15:18 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 20:15:18 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 20:15:18 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 20:15:18 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 20:15:18 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 20:15:18 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 20:15:18 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 20:15:18 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 20:15:18 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:15:18 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 20:15:18 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 20:15:18 | INFO     | clean_data           | Cleaning data...
+2026-04-20 20:15:18 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 20:15:18 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:15:18 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 20:15:18 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 20:15:18 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 20:15:18 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 20:15:18 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 20:15:18 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 20:15:18 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 20:15:18 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 20:15:18 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 20:15:18 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 20:15:18 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 20:15:18 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:15:18 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:15:18 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 20:15:19 | DEBUG    | save_data            | Loaded 6832 existing rows
+2026-04-20 20:15:19 | DEBUG    | save_data            | Combined to 7320 rows
+2026-04-20 20:15:19 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 20:15:20 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmp3ykninvz.xlsx
+2026-04-20 20:15:20 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 20:15:20 | INFO     | save_data            | ✅ Data saved successfully (7320 total rows, 565884 bytes)
+2026-04-20 20:15:20 | INFO     | run                  | ======================================================================
+2026-04-20 20:15:20 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 20:15:20 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 20:15:20 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 20:15:20 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 20:15:20 | INFO     | run                  |    - Timestamp: 2026-04-21 01:15:13
+2026-04-20 20:15:20 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:15:20 | INFO     | run                  | ======================================================================
+2026-04-20 20:15:20 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 20:15:20 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 1, 'MINUTE': 15, 'DATETIME': '2026-04-21 01:15'}
+2026-04-20 20:20:20 | INFO     | run                  | ======================================================================
+2026-04-20 20:20:20 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 20:20:20 | INFO     | run                  | ======================================================================
+2026-04-20 20:20:20 | INFO     | run                  | Execution Time: 2026-04-21 01:20:20 PKT
+2026-04-20 20:20:20 | INFO     | run                  | Configuration:
+2026-04-20 20:20:20 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 20:20:20 | INFO     | run                  |    - Data directory: data
+2026-04-20 20:20:20 | INFO     | run                  |    - Log directory: logs
+2026-04-20 20:20:20 | INFO     | run                  | ======================================================================
+2026-04-20 20:20:20 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 20:20:20 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 20:20:23 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 20:20:24 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 20:20:24 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 20:20:24 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 20:20:24 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 20:20:24 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 20:20:24 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 20:20:24 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 20:20:24 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 20:20:24 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 20:20:24 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 20:20:24 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:20:24 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 20:20:24 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 20:20:24 | INFO     | clean_data           | Cleaning data...
+2026-04-20 20:20:24 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 20:20:24 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:20:24 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 20:20:24 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 20:20:24 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 20:20:24 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 20:20:24 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 20:20:24 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 20:20:24 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 20:20:24 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 20:20:24 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 20:20:24 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 20:20:24 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 20:20:24 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:20:24 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:20:24 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 20:20:24 | DEBUG    | save_data            | Loaded 7320 existing rows
+2026-04-20 20:20:24 | DEBUG    | save_data            | Combined to 7808 rows
+2026-04-20 20:20:24 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 20:20:26 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmp2ririzuc.xlsx
+2026-04-20 20:20:26 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 20:20:26 | INFO     | save_data            | ✅ Data saved successfully (7808 total rows, 603295 bytes)
+2026-04-20 20:20:26 | INFO     | run                  | ======================================================================
+2026-04-20 20:20:26 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 20:20:26 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 20:20:26 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 20:20:26 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 20:20:26 | INFO     | run                  |    - Timestamp: 2026-04-21 01:20:20
+2026-04-20 20:20:26 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:20:26 | INFO     | run                  | ======================================================================
+2026-04-20 20:20:26 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 20:20:26 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 1, 'MINUTE': 20, 'DATETIME': '2026-04-21 01:20'}
+2026-04-20 20:25:26 | INFO     | run                  | ======================================================================
+2026-04-20 20:25:26 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 20:25:26 | INFO     | run                  | ======================================================================
+2026-04-20 20:25:26 | INFO     | run                  | Execution Time: 2026-04-21 01:25:26 PKT
+2026-04-20 20:25:26 | INFO     | run                  | Configuration:
+2026-04-20 20:25:26 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 20:25:26 | INFO     | run                  |    - Data directory: data
+2026-04-20 20:25:26 | INFO     | run                  |    - Log directory: logs
+2026-04-20 20:25:26 | INFO     | run                  | ======================================================================
+2026-04-20 20:25:26 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 20:25:26 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 20:25:29 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 20:25:31 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 20:25:31 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 20:25:31 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 20:25:31 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 20:25:31 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 20:25:31 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 20:25:31 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 20:25:31 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 20:25:31 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 20:25:31 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 20:25:31 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:25:31 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 20:25:31 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 20:25:31 | INFO     | clean_data           | Cleaning data...
+2026-04-20 20:25:31 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 20:25:31 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:25:31 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 20:25:31 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 20:25:31 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 20:25:31 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 20:25:31 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 20:25:31 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 20:25:31 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 20:25:31 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 20:25:31 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 20:25:31 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 20:25:31 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 20:25:31 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:25:31 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:25:31 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 20:25:32 | DEBUG    | save_data            | Loaded 7808 existing rows
+2026-04-20 20:25:32 | DEBUG    | save_data            | Combined to 8296 rows
+2026-04-20 20:25:32 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 20:25:33 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmpej2uwp4e.xlsx
+2026-04-20 20:25:33 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 20:25:33 | INFO     | save_data            | ✅ Data saved successfully (8296 total rows, 640636 bytes)
+2026-04-20 20:25:33 | INFO     | run                  | ======================================================================
+2026-04-20 20:25:33 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 20:25:33 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 20:25:33 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 20:25:33 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 20:25:33 | INFO     | run                  |    - Timestamp: 2026-04-21 01:25:26
+2026-04-20 20:25:33 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:25:33 | INFO     | run                  | ======================================================================
+2026-04-20 20:25:33 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 20:25:33 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 1, 'MINUTE': 25, 'DATETIME': '2026-04-21 01:25'}
+2026-04-20 20:30:34 | INFO     | run                  | ======================================================================
+2026-04-20 20:30:34 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 20:30:34 | INFO     | run                  | ======================================================================
+2026-04-20 20:30:34 | INFO     | run                  | Execution Time: 2026-04-21 01:30:34 PKT
+2026-04-20 20:30:34 | INFO     | run                  | Configuration:
+2026-04-20 20:30:34 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 20:30:34 | INFO     | run                  |    - Data directory: data
+2026-04-20 20:30:34 | INFO     | run                  |    - Log directory: logs
+2026-04-20 20:30:34 | INFO     | run                  | ======================================================================
+2026-04-20 20:30:34 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 20:30:34 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 20:30:37 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 20:30:38 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 20:30:38 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 20:30:38 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 20:30:38 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 20:30:38 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 20:30:38 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 20:30:38 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 20:30:38 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 20:30:38 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 20:30:38 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 20:30:38 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:30:38 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 20:30:38 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 20:30:38 | INFO     | clean_data           | Cleaning data...
+2026-04-20 20:30:38 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 20:30:38 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:30:38 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 20:30:38 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 20:30:38 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 20:30:38 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 20:30:38 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 20:30:38 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 20:30:38 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 20:30:38 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 20:30:38 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 20:30:38 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 20:30:38 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 20:30:38 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:30:38 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:30:38 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 20:30:39 | DEBUG    | save_data            | Loaded 8296 existing rows
+2026-04-20 20:30:39 | DEBUG    | save_data            | Combined to 8784 rows
+2026-04-20 20:30:39 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 20:30:41 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmptmc2ppz8.xlsx
+2026-04-20 20:30:41 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 20:30:41 | INFO     | save_data            | ✅ Data saved successfully (8784 total rows, 678016 bytes)
+2026-04-20 20:30:41 | INFO     | run                  | ======================================================================
+2026-04-20 20:30:41 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 20:30:41 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 20:30:41 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 20:30:41 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 20:30:41 | INFO     | run                  |    - Timestamp: 2026-04-21 01:30:34
+2026-04-20 20:30:41 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:30:41 | INFO     | run                  | ======================================================================
+2026-04-20 20:30:41 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 20:30:41 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 1, 'MINUTE': 30, 'DATETIME': '2026-04-21 01:30'}
+2026-04-20 20:35:41 | INFO     | run                  | ======================================================================
+2026-04-20 20:35:41 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 20:35:41 | INFO     | run                  | ======================================================================
+2026-04-20 20:35:41 | INFO     | run                  | Execution Time: 2026-04-21 01:35:41 PKT
+2026-04-20 20:35:41 | INFO     | run                  | Configuration:
+2026-04-20 20:35:41 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 20:35:41 | INFO     | run                  |    - Data directory: data
+2026-04-20 20:35:41 | INFO     | run                  |    - Log directory: logs
+2026-04-20 20:35:41 | INFO     | run                  | ======================================================================
+2026-04-20 20:35:41 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 20:35:41 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 20:35:44 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 20:35:46 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 20:35:46 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 20:35:46 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 20:35:46 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 20:35:46 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 20:35:46 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 20:35:46 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 20:35:46 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 20:35:46 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 20:35:46 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 20:35:46 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:35:46 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 20:35:46 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 20:35:46 | INFO     | clean_data           | Cleaning data...
+2026-04-20 20:35:46 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 20:35:46 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:35:46 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 20:35:46 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 20:35:46 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 20:35:46 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 20:35:46 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 20:35:46 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 20:35:46 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 20:35:46 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 20:35:46 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 20:35:46 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 20:35:46 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 20:35:46 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:35:46 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:35:46 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 20:35:47 | DEBUG    | save_data            | Loaded 8784 existing rows
+2026-04-20 20:35:47 | DEBUG    | save_data            | Combined to 9272 rows
+2026-04-20 20:35:47 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 20:35:49 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmpd03iffv2.xlsx
+2026-04-20 20:35:49 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 20:35:49 | INFO     | save_data            | ✅ Data saved successfully (9272 total rows, 715426 bytes)
+2026-04-20 20:35:49 | INFO     | run                  | ======================================================================
+2026-04-20 20:35:49 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 20:35:49 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 20:35:49 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 20:35:49 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 20:35:49 | INFO     | run                  |    - Timestamp: 2026-04-21 01:35:41
+2026-04-20 20:35:49 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:35:49 | INFO     | run                  | ======================================================================
+2026-04-20 20:35:49 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 20:35:49 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 1, 'MINUTE': 35, 'DATETIME': '2026-04-21 01:35'}
+2026-04-20 20:40:49 | INFO     | run                  | ======================================================================
+2026-04-20 20:40:49 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 20:40:49 | INFO     | run                  | ======================================================================
+2026-04-20 20:40:49 | INFO     | run                  | Execution Time: 2026-04-21 01:40:49 PKT
+2026-04-20 20:40:49 | INFO     | run                  | Configuration:
+2026-04-20 20:40:49 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 20:40:49 | INFO     | run                  |    - Data directory: data
+2026-04-20 20:40:49 | INFO     | run                  |    - Log directory: logs
+2026-04-20 20:40:49 | INFO     | run                  | ======================================================================
+2026-04-20 20:40:49 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 20:40:49 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 20:40:53 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 20:40:54 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 20:40:54 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 20:40:54 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 20:40:54 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 20:40:54 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 20:40:54 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 20:40:54 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 20:40:54 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 20:40:54 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 20:40:54 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 20:40:54 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:40:54 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 20:40:54 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 20:40:54 | INFO     | clean_data           | Cleaning data...
+2026-04-20 20:40:54 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 20:40:54 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:40:54 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 20:40:54 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 20:40:54 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 20:40:54 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 20:40:54 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 20:40:54 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 20:40:54 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 20:40:54 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 20:40:54 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 20:40:54 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 20:40:54 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 20:40:54 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:40:54 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:40:54 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 20:40:55 | DEBUG    | save_data            | Loaded 9272 existing rows
+2026-04-20 20:40:55 | DEBUG    | save_data            | Combined to 9760 rows
+2026-04-20 20:40:55 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 20:40:57 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmpta_c_37c.xlsx
+2026-04-20 20:40:57 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 20:40:57 | INFO     | save_data            | ✅ Data saved successfully (9760 total rows, 752816 bytes)
+2026-04-20 20:40:57 | INFO     | run                  | ======================================================================
+2026-04-20 20:40:57 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 20:40:57 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 20:40:57 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 20:40:57 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 20:40:57 | INFO     | run                  |    - Timestamp: 2026-04-21 01:40:49
+2026-04-20 20:40:57 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:40:57 | INFO     | run                  | ======================================================================
+2026-04-20 20:40:57 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 20:40:57 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 1, 'MINUTE': 40, 'DATETIME': '2026-04-21 01:40'}
+2026-04-20 20:45:57 | INFO     | run                  | ======================================================================
+2026-04-20 20:45:57 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 20:45:57 | INFO     | run                  | ======================================================================
+2026-04-20 20:45:57 | INFO     | run                  | Execution Time: 2026-04-21 01:45:57 PKT
+2026-04-20 20:45:57 | INFO     | run                  | Configuration:
+2026-04-20 20:45:57 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 20:45:57 | INFO     | run                  |    - Data directory: data
+2026-04-20 20:45:57 | INFO     | run                  |    - Log directory: logs
+2026-04-20 20:45:57 | INFO     | run                  | ======================================================================
+2026-04-20 20:45:57 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 20:45:57 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 20:46:00 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 20:46:02 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 20:46:02 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 20:46:02 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 20:46:02 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 20:46:02 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 20:46:02 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 20:46:02 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 20:46:02 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 20:46:02 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 20:46:02 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 20:46:02 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:46:02 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 20:46:02 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 20:46:02 | INFO     | clean_data           | Cleaning data...
+2026-04-20 20:46:02 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 20:46:02 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:46:02 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 20:46:02 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 20:46:02 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 20:46:02 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 20:46:02 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 20:46:02 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 20:46:02 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 20:46:02 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 20:46:02 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 20:46:02 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 20:46:02 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 20:46:02 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:46:02 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:46:02 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 20:46:03 | DEBUG    | save_data            | Loaded 9760 existing rows
+2026-04-20 20:46:03 | DEBUG    | save_data            | Combined to 10248 rows
+2026-04-20 20:46:03 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 20:46:05 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmpj8ccd63i.xlsx
+2026-04-20 20:46:05 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 20:46:05 | INFO     | save_data            | ✅ Data saved successfully (10248 total rows, 790243 bytes)
+2026-04-20 20:46:05 | INFO     | run                  | ======================================================================
+2026-04-20 20:46:05 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 20:46:05 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 20:46:05 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 20:46:05 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 20:46:05 | INFO     | run                  |    - Timestamp: 2026-04-21 01:45:57
+2026-04-20 20:46:05 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:46:05 | INFO     | run                  | ======================================================================
+2026-04-20 20:46:05 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 20:46:05 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 1, 'MINUTE': 45, 'DATETIME': '2026-04-21 01:45'}
+2026-04-20 20:51:05 | INFO     | run                  | ======================================================================
+2026-04-20 20:51:05 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 20:51:05 | INFO     | run                  | ======================================================================
+2026-04-20 20:51:05 | INFO     | run                  | Execution Time: 2026-04-21 01:51:05 PKT
+2026-04-20 20:51:05 | INFO     | run                  | Configuration:
+2026-04-20 20:51:05 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 20:51:05 | INFO     | run                  |    - Data directory: data
+2026-04-20 20:51:05 | INFO     | run                  |    - Log directory: logs
+2026-04-20 20:51:05 | INFO     | run                  | ======================================================================
+2026-04-20 20:51:05 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 20:51:05 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 20:51:09 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 20:51:10 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 20:51:10 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 20:51:10 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 20:51:10 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 20:51:10 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 20:51:10 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 20:51:10 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 20:51:10 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 20:51:10 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 20:51:10 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 20:51:10 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:51:10 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 20:51:10 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 20:51:10 | INFO     | clean_data           | Cleaning data...
+2026-04-20 20:51:10 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 20:51:10 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:51:10 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 20:51:10 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 20:51:10 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 20:51:10 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 20:51:10 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 20:51:10 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 20:51:10 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 20:51:10 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 20:51:10 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 20:51:10 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 20:51:10 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 20:51:10 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:51:10 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:51:10 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 20:51:12 | DEBUG    | save_data            | Loaded 10248 existing rows
+2026-04-20 20:51:12 | DEBUG    | save_data            | Combined to 10736 rows
+2026-04-20 20:51:12 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 20:51:13 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmposlnk1lz.xlsx
+2026-04-20 20:51:13 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 20:51:13 | INFO     | save_data            | ✅ Data saved successfully (10736 total rows, 827505 bytes)
+2026-04-20 20:51:13 | INFO     | run                  | ======================================================================
+2026-04-20 20:51:13 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 20:51:13 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 20:51:13 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 20:51:13 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 20:51:13 | INFO     | run                  |    - Timestamp: 2026-04-21 01:51:05
+2026-04-20 20:51:13 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:51:13 | INFO     | run                  | ======================================================================
+2026-04-20 20:51:13 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 20:51:13 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 1, 'MINUTE': 51, 'DATETIME': '2026-04-21 01:51'}
+2026-04-20 20:56:14 | INFO     | run                  | ======================================================================
+2026-04-20 20:56:14 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 20:56:14 | INFO     | run                  | ======================================================================
+2026-04-20 20:56:14 | INFO     | run                  | Execution Time: 2026-04-21 01:56:14 PKT
+2026-04-20 20:56:14 | INFO     | run                  | Configuration:
+2026-04-20 20:56:14 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 20:56:14 | INFO     | run                  |    - Data directory: data
+2026-04-20 20:56:14 | INFO     | run                  |    - Log directory: logs
+2026-04-20 20:56:14 | INFO     | run                  | ======================================================================
+2026-04-20 20:56:14 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 20:56:14 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 20:56:18 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 20:56:20 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 20:56:20 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 20:56:20 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 20:56:20 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 20:56:20 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 20:56:20 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 20:56:20 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 20:56:20 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 20:56:20 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 20:56:20 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 20:56:20 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:56:20 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 20:56:20 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 20:56:20 | INFO     | clean_data           | Cleaning data...
+2026-04-20 20:56:20 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 20:56:20 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 20:56:20 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 20:56:20 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 20:56:20 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 20:56:20 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 20:56:20 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 20:56:20 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 20:56:20 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 20:56:20 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 20:56:20 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 20:56:20 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 20:56:20 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 20:56:20 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:56:20 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:56:20 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 20:56:21 | DEBUG    | save_data            | Loaded 10736 existing rows
+2026-04-20 20:56:21 | DEBUG    | save_data            | Combined to 11224 rows
+2026-04-20 20:56:21 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 20:56:23 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmp4ukslyse.xlsx
+2026-04-20 20:56:23 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 20:56:23 | INFO     | save_data            | ✅ Data saved successfully (11224 total rows, 864736 bytes)
+2026-04-20 20:56:23 | INFO     | run                  | ======================================================================
+2026-04-20 20:56:23 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 20:56:23 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 20:56:23 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 20:56:23 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 20:56:23 | INFO     | run                  |    - Timestamp: 2026-04-21 01:56:14
+2026-04-20 20:56:23 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 20:56:23 | INFO     | run                  | ======================================================================
+2026-04-20 20:56:23 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 20:56:23 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 1, 'MINUTE': 56, 'DATETIME': '2026-04-21 01:56'}
+2026-04-20 21:01:23 | INFO     | run                  | ======================================================================
+2026-04-20 21:01:23 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 21:01:23 | INFO     | run                  | ======================================================================
+2026-04-20 21:01:23 | INFO     | run                  | Execution Time: 2026-04-21 02:01:23 PKT
+2026-04-20 21:01:23 | INFO     | run                  | Configuration:
+2026-04-20 21:01:23 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 21:01:23 | INFO     | run                  |    - Data directory: data
+2026-04-20 21:01:23 | INFO     | run                  |    - Log directory: logs
+2026-04-20 21:01:23 | INFO     | run                  | ======================================================================
+2026-04-20 21:01:23 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 21:01:23 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 21:01:26 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 21:01:28 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 21:01:28 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 21:01:28 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 21:01:28 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 21:01:28 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 21:01:28 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 21:01:28 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 21:01:28 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 21:01:28 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 21:01:28 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 21:01:28 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 21:01:28 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 21:01:28 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 21:01:28 | INFO     | clean_data           | Cleaning data...
+2026-04-20 21:01:28 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 21:01:28 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 21:01:28 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 21:01:28 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 21:01:28 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 21:01:28 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 21:01:28 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 21:01:28 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 21:01:28 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 21:01:28 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 21:01:28 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 21:01:28 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 21:01:28 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 21:01:28 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:01:28 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:01:28 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 21:01:29 | DEBUG    | save_data            | Loaded 11224 existing rows
+2026-04-20 21:01:29 | DEBUG    | save_data            | Combined to 11712 rows
+2026-04-20 21:01:29 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 21:01:31 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmpxnyi8ws4.xlsx
+2026-04-20 21:01:31 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 21:01:31 | INFO     | save_data            | ✅ Data saved successfully (11712 total rows, 902019 bytes)
+2026-04-20 21:01:31 | INFO     | run                  | ======================================================================
+2026-04-20 21:01:31 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 21:01:31 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 21:01:31 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 21:01:31 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 21:01:31 | INFO     | run                  |    - Timestamp: 2026-04-21 02:01:23
+2026-04-20 21:01:31 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:01:31 | INFO     | run                  | ======================================================================
+2026-04-20 21:01:31 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 21:01:31 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 2, 'MINUTE': 1, 'DATETIME': '2026-04-21 02:01'}
+2026-04-20 21:06:31 | INFO     | run                  | ======================================================================
+2026-04-20 21:06:31 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 21:06:31 | INFO     | run                  | ======================================================================
+2026-04-20 21:06:31 | INFO     | run                  | Execution Time: 2026-04-21 02:06:31 PKT
+2026-04-20 21:06:31 | INFO     | run                  | Configuration:
+2026-04-20 21:06:31 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 21:06:31 | INFO     | run                  |    - Data directory: data
+2026-04-20 21:06:31 | INFO     | run                  |    - Log directory: logs
+2026-04-20 21:06:31 | INFO     | run                  | ======================================================================
+2026-04-20 21:06:31 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 21:06:31 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 21:06:35 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 21:06:36 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 21:06:36 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 21:06:36 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 21:06:36 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 21:06:36 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 21:06:36 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 21:06:36 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 21:06:36 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 21:06:36 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 21:06:36 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 21:06:36 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 21:06:36 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 21:06:36 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 21:06:36 | INFO     | clean_data           | Cleaning data...
+2026-04-20 21:06:36 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 21:06:36 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 21:06:36 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 21:06:36 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 21:06:36 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 21:06:36 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 21:06:36 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 21:06:36 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 21:06:36 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 21:06:36 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 21:06:36 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 21:06:36 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 21:06:36 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 21:06:36 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:06:36 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:06:36 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 21:06:38 | DEBUG    | save_data            | Loaded 11712 existing rows
+2026-04-20 21:06:38 | DEBUG    | save_data            | Combined to 12200 rows
+2026-04-20 21:06:38 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 21:06:40 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmp2735bwsw.xlsx
+2026-04-20 21:06:40 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 21:06:40 | INFO     | save_data            | ✅ Data saved successfully (12200 total rows, 939257 bytes)
+2026-04-20 21:06:40 | INFO     | run                  | ======================================================================
+2026-04-20 21:06:40 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 21:06:40 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 21:06:40 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 21:06:40 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 21:06:40 | INFO     | run                  |    - Timestamp: 2026-04-21 02:06:31
+2026-04-20 21:06:40 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:06:40 | INFO     | run                  | ======================================================================
+2026-04-20 21:06:40 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 21:06:40 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 2, 'MINUTE': 6, 'DATETIME': '2026-04-21 02:06'}
+2026-04-20 21:11:40 | INFO     | run                  | ======================================================================
+2026-04-20 21:11:40 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 21:11:40 | INFO     | run                  | ======================================================================
+2026-04-20 21:11:40 | INFO     | run                  | Execution Time: 2026-04-21 02:11:40 PKT
+2026-04-20 21:11:40 | INFO     | run                  | Configuration:
+2026-04-20 21:11:40 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 21:11:40 | INFO     | run                  |    - Data directory: data
+2026-04-20 21:11:40 | INFO     | run                  |    - Log directory: logs
+2026-04-20 21:11:40 | INFO     | run                  | ======================================================================
+2026-04-20 21:11:40 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 21:11:40 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 21:11:43 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 21:11:46 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 21:11:46 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 21:11:46 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 21:11:46 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 21:11:46 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 21:11:46 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 21:11:46 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 21:11:46 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 21:11:46 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 21:11:46 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 21:11:46 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 21:11:46 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 21:11:46 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 21:11:46 | INFO     | clean_data           | Cleaning data...
+2026-04-20 21:11:46 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 21:11:46 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 21:11:46 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 21:11:46 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 21:11:46 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 21:11:46 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 21:11:46 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 21:11:46 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 21:11:46 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 21:11:46 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 21:11:46 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 21:11:46 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 21:11:46 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 21:11:46 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:11:46 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:11:46 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 21:11:47 | DEBUG    | save_data            | Loaded 12200 existing rows
+2026-04-20 21:11:47 | DEBUG    | save_data            | Combined to 12688 rows
+2026-04-20 21:11:47 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 21:11:49 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmpeo3i8rjt.xlsx
+2026-04-20 21:11:49 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 21:11:49 | INFO     | save_data            | ✅ Data saved successfully (12688 total rows, 976529 bytes)
+2026-04-20 21:11:49 | INFO     | run                  | ======================================================================
+2026-04-20 21:11:49 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 21:11:49 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 21:11:49 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 21:11:49 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 21:11:49 | INFO     | run                  |    - Timestamp: 2026-04-21 02:11:40
+2026-04-20 21:11:49 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:11:49 | INFO     | run                  | ======================================================================
+2026-04-20 21:11:49 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 21:11:49 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 2, 'MINUTE': 11, 'DATETIME': '2026-04-21 02:11'}
+2026-04-20 21:16:50 | INFO     | run                  | ======================================================================
+2026-04-20 21:16:50 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 21:16:50 | INFO     | run                  | ======================================================================
+2026-04-20 21:16:50 | INFO     | run                  | Execution Time: 2026-04-21 02:16:50 PKT
+2026-04-20 21:16:50 | INFO     | run                  | Configuration:
+2026-04-20 21:16:50 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 21:16:50 | INFO     | run                  |    - Data directory: data
+2026-04-20 21:16:50 | INFO     | run                  |    - Log directory: logs
+2026-04-20 21:16:50 | INFO     | run                  | ======================================================================
+2026-04-20 21:16:50 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 21:16:50 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 21:16:52 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 21:16:54 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 21:16:54 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 21:16:54 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 21:16:54 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 21:16:54 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 21:16:54 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 21:16:54 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 21:16:54 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 21:16:54 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 21:16:54 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 21:16:54 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 21:16:54 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 21:16:54 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 21:16:54 | INFO     | clean_data           | Cleaning data...
+2026-04-20 21:16:54 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 21:16:54 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 21:16:54 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 21:16:54 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 21:16:54 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 21:16:54 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 21:16:54 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 21:16:54 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 21:16:54 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 21:16:54 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 21:16:54 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 21:16:54 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 21:16:54 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 21:16:54 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:16:54 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:16:54 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 21:16:55 | DEBUG    | save_data            | Loaded 12688 existing rows
+2026-04-20 21:16:55 | DEBUG    | save_data            | Combined to 13176 rows
+2026-04-20 21:16:55 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 21:16:58 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmpfy2_948e.xlsx
+2026-04-20 21:16:58 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 21:16:58 | INFO     | save_data            | ✅ Data saved successfully (13176 total rows, 1013792 bytes)
+2026-04-20 21:16:58 | INFO     | run                  | ======================================================================
+2026-04-20 21:16:58 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 21:16:58 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 21:16:58 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 21:16:58 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 21:16:58 | INFO     | run                  |    - Timestamp: 2026-04-21 02:16:50
+2026-04-20 21:16:58 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:16:58 | INFO     | run                  | ======================================================================
+2026-04-20 21:16:58 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 21:16:58 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 2, 'MINUTE': 16, 'DATETIME': '2026-04-21 02:16'}
+2026-04-20 21:21:58 | INFO     | run                  | ======================================================================
+2026-04-20 21:21:58 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 21:21:58 | INFO     | run                  | ======================================================================
+2026-04-20 21:21:58 | INFO     | run                  | Execution Time: 2026-04-21 02:21:58 PKT
+2026-04-20 21:21:58 | INFO     | run                  | Configuration:
+2026-04-20 21:21:58 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 21:21:58 | INFO     | run                  |    - Data directory: data
+2026-04-20 21:21:58 | INFO     | run                  |    - Log directory: logs
+2026-04-20 21:21:58 | INFO     | run                  | ======================================================================
+2026-04-20 21:21:58 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 21:21:58 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 21:22:01 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 21:22:02 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 21:22:02 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 21:22:02 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 21:22:02 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 21:22:02 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 21:22:02 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 21:22:02 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 21:22:02 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 21:22:02 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 21:22:02 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 21:22:02 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 21:22:02 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 21:22:02 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 21:22:02 | INFO     | clean_data           | Cleaning data...
+2026-04-20 21:22:02 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 21:22:02 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 21:22:02 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 21:22:02 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 21:22:02 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 21:22:02 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 21:22:02 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 21:22:02 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 21:22:02 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 21:22:02 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 21:22:02 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 21:22:02 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 21:22:02 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 21:22:02 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:22:02 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:22:02 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 21:22:04 | DEBUG    | save_data            | Loaded 13176 existing rows
+2026-04-20 21:22:04 | DEBUG    | save_data            | Combined to 13664 rows
+2026-04-20 21:22:04 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 21:22:06 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmp_nsgdq5r.xlsx
+2026-04-20 21:22:06 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 21:22:06 | INFO     | save_data            | ✅ Data saved successfully (13664 total rows, 1050981 bytes)
+2026-04-20 21:22:06 | INFO     | run                  | ======================================================================
+2026-04-20 21:22:06 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 21:22:06 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 21:22:06 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 21:22:06 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 21:22:06 | INFO     | run                  |    - Timestamp: 2026-04-21 02:21:58
+2026-04-20 21:22:06 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:22:06 | INFO     | run                  | ======================================================================
+2026-04-20 21:22:06 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 21:22:06 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 2, 'MINUTE': 21, 'DATETIME': '2026-04-21 02:21'}
+2026-04-20 21:27:06 | INFO     | run                  | ======================================================================
+2026-04-20 21:27:06 | INFO     | run                  | 🚀 MARKET DATA SCRAPER - SINGLE EXECUTION
+2026-04-20 21:27:06 | INFO     | run                  | ======================================================================
+2026-04-20 21:27:06 | INFO     | run                  | Execution Time: 2026-04-21 02:27:06 PKT
+2026-04-20 21:27:06 | INFO     | run                  | Configuration:
+2026-04-20 21:27:06 | INFO     | run                  |    - Timezone: Asia/Karachi
+2026-04-20 21:27:06 | INFO     | run                  |    - Data directory: data
+2026-04-20 21:27:06 | INFO     | run                  |    - Log directory: logs
+2026-04-20 21:27:06 | INFO     | run                  | ======================================================================
+2026-04-20 21:27:06 | INFO     | fetch_data           | Fetching data (Attempt 1/3)...
+2026-04-20 21:27:06 | DEBUG    | fetch_data           | Establishing session with https://dps.psx.com.pk/
+2026-04-20 21:27:09 | DEBUG    | fetch_data           | Requesting data from https://dps.psx.com.pk/market-watch
+2026-04-20 21:27:10 | DEBUG    | fetch_data           | Response status: 200
+2026-04-20 21:27:10 | DEBUG    | fetch_data           | Response content type: text/html; charset=utf-8
+2026-04-20 21:27:10 | DEBUG    | fetch_data           | Response size: 468934 bytes
+2026-04-20 21:27:10 | INFO     | fetch_data           | ✅ Data fetched successfully (Status: 200)
+2026-04-20 21:27:10 | DEBUG    | parse_json           | Attempting JSON parsing...
+2026-04-20 21:27:10 | DEBUG    | parse_json           | Response preview: <table class="tbl" data-page-length="25"><thead class="tbl__head"><!-- tr--><!--   th(colspan="11")--><!--   th.center(colspan="2", style="width: 110px;") TOTAL BUY ORDERS--><!--   th.center(colspan="2", style="width: 110px;") TOTAL SELL ORDERS--><tr><th data-name="symbol">SYMBOL</th><th data-name="sector">SECTOR</th><th data-name="listed">LISTED IN</th><th class="right" data-name="ldcp">LDCP</th><th class="right" data-name="open">OPEN</th><th class="right" data-name="high">HIGH</th><th class="r
+2026-04-20 21:27:10 | WARNING  | parse_json           | ⚠️ JSON parsing failed: Expecting value: line 1 column 1 (char 0)
+2026-04-20 21:27:10 | INFO     | run                  | JSON parsing failed, trying HTML fallback...
+2026-04-20 21:27:10 | INFO     | parse_html           | Attempting HTML fallback parsing...
+2026-04-20 21:27:10 | DEBUG    | parse_html           | Found 1 table(s) in HTML
+2026-04-20 21:27:10 | DEBUG    | parse_html           | Table columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 21:27:10 | DEBUG    | parse_html           | Table shape: (488, 11)
+2026-04-20 21:27:10 | INFO     | parse_html           | ✅ HTML parsed successfully (488 rows)
+2026-04-20 21:27:10 | INFO     | clean_data           | Cleaning data...
+2026-04-20 21:27:10 | DEBUG    | clean_data           | Initial shape: (488, 11)
+2026-04-20 21:27:10 | DEBUG    | clean_data           | Initial columns: ['SYMBOL', 'SECTOR', 'LISTED IN', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME']
+2026-04-20 21:27:10 | DEBUG    | clean_data           | Removed 'LISTED IN' column
+2026-04-20 21:27:10 | DEBUG    | clean_data           | Converted LDCP from float64 to numeric
+2026-04-20 21:27:10 | DEBUG    | clean_data           | Converted OPEN from float64 to numeric
+2026-04-20 21:27:10 | DEBUG    | clean_data           | Converted HIGH from float64 to numeric
+2026-04-20 21:27:10 | DEBUG    | clean_data           | Converted LOW from float64 to numeric
+2026-04-20 21:27:10 | DEBUG    | clean_data           | Converted CURRENT from float64 to numeric
+2026-04-20 21:27:10 | DEBUG    | clean_data           | Converted CHANGE from float64 to numeric
+2026-04-20 21:27:10 | DEBUG    | clean_data           | Converted CHANGE (%) from str to numeric
+2026-04-20 21:27:10 | DEBUG    | clean_data           | Converted VOLUME from int64 to numeric
+2026-04-20 21:27:10 | INFO     | clean_data           | ✅ Data cleaned (488 rows, 16 columns)
+2026-04-20 21:27:10 | DEBUG    | clean_data           | Final columns: ['SYMBOL', 'SECTOR', 'LDCP', 'OPEN', 'HIGH', 'LOW', 'CURRENT', 'CHANGE', 'CHANGE (%)', 'VOLUME', 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'DATETIME']
+2026-04-20 21:27:10 | DEBUG    | get_file_path        | Generated file path: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:27:10 | INFO     | save_data            | Saving data to: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:27:10 | DEBUG    | save_data            | Existing file found, merging data...
+2026-04-20 21:27:11 | DEBUG    | save_data            | Loaded 13664 existing rows
+2026-04-20 21:27:11 | DEBUG    | save_data            | Combined to 14152 rows
+2026-04-20 21:27:11 | DEBUG    | save_data            | Writing to temporary file...
+2026-04-20 21:27:14 | DEBUG    | save_data            | Data written to temp file: /home/runner/work/varelix-kyrion/varelix-kyrion/data/2026/04/tmp_geuqmx5.xlsx
+2026-04-20 21:27:14 | DEBUG    | save_data            | Temp file moved to final location
+2026-04-20 21:27:14 | INFO     | save_data            | ✅ Data saved successfully (14152 total rows, 1088314 bytes)
+2026-04-20 21:27:14 | INFO     | run                  | ======================================================================
+2026-04-20 21:27:14 | INFO     | run                  | 📊 EXECUTION SUMMARY:
+2026-04-20 21:27:14 | INFO     | run                  |    ✅ Status: SUCCESS
+2026-04-20 21:27:14 | INFO     | run                  |    - Rows processed: 488
+2026-04-20 21:27:14 | INFO     | run                  |    - Unique symbols: 488
+2026-04-20 21:27:14 | INFO     | run                  |    - Timestamp: 2026-04-21 02:27:06
+2026-04-20 21:27:14 | INFO     | run                  |    - File: data/2026/04/2026-04-21.xlsx
+2026-04-20 21:27:14 | INFO     | run                  | ======================================================================
+2026-04-20 21:27:14 | DEBUG    | run                  | Sample data (first row):
+2026-04-20 21:27:14 | DEBUG    | run                  | {'SYMBOL': 'BOP', 'SECTOR': 807, 'LDCP': 37.01, 'OPEN': 36.4, 'HIGH': 37.6, 'LOW': 35.4, 'CURRENT': 36.6, 'CHANGE': -0.41, 'CHANGE (%)': nan, 'VOLUME': 120854860, 'YEAR': 2026, 'MONTH': 4, 'DAY': 21, 'HOUR': 2, 'MINUTE': 27, 'DATETIME': '2026-04-21 02:27'}
