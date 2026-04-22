@@ -1,9 +1,7 @@
-name: PSX Auto Loop
+name: Auto Loop
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 4,8,12 * * 1-5'  # Runs at 9 AM, 1 PM, 5 PM PKT (Mon-Fri)
 
 jobs:
   run:
