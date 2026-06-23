@@ -1,0 +1,50 @@
+name: PSX Indices Scraper
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    # PKT 5:00 AM (UTC 0:00)
+    - cron: '0 0 * * 1-5'
+
+    # PKT 8:00 AM (UTC 3:00)
+    - cron: '0 3 * * 1-5'
+
+    # PKT 12:30 PM (UTC 7:30)
+    - cron: '30 7 * * 1-5'
+
+    # PKT 3:00 PM (UTC 10:00)
+    - cron: '0 10 * * 1-5'
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    concurrency:
+      group: psx-scraper
+      cancel-in-progress: true
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run scraper
+        run: |
+          python scraper.py
+
+      - name: Commit results
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add data/psx_indices_history.xlsx
+          git commit -m "Update PSX indices data" || echo "No changes"
+          git push
