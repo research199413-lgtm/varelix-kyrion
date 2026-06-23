@@ -4,8 +4,8 @@ URL = "https://dps.psx.com.pk/indices"
 
 OUTPUT_FILE = Path("data/psx_indices_history.xlsx")
 
-LOOP_INTERVAL = 10   # seconds (only used if running locally)
-LOOP_COUNT = 5
+LOOP_INTERVAL = 300   # seconds (only used if running locally)
+LOOP_COUNT = 60
 
 HEADERS = {
     "User-Agent": (
