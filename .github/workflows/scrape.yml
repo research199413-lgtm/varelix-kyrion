@@ -1,49 +1,60 @@
-name: PSX Indices Scraper
+name: PSX Data Scraper
 
 on:
-  workflow_dispatch:
-
   schedule:
-    - cron: '0 0 * * 1-5'
-    - cron: '0 3 * * 1-5'
-    - cron: '30 7 * * 1-5'
-    - cron: '0 10 * * 1-5'
+    # Every 5 minutes
+    - cron: "*/5 * * * *"
+
+  workflow_dispatch:
 
 permissions:
   contents: write
+
+# Prevent multiple runs from pushing at the same time
+concurrency:
+  group: psx-data
+  cancel-in-progress: false
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
 
-    concurrency:
-      group: psx-scraper
-      cancel-in-progress: true
-
     steps:
-      - name: Checkout repo
+      - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          persist-credentials: true
+          fetch-depth: 0
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
-          pip install -r requirements.txt
+          python -m pip install --upgrade pip
+          pip install pandas requests beautifulsoup4 lxml html5lib openpyxl
 
-      - name: Run scraper
-        run: |
-          python scraper.py
+      - name: Run Scraper
+        run: python scraper.py
 
-      - name: Commit results
+      - name: Commit and Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add data/psx_indices_history.xlsx
-          git commit -m "Update PSX indices data" || echo "No changes"
-          git push
+          # Stage all new/modified files
+          git add -A
+
+          # Exit if nothing changed
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Update PSX data $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+
+          # Rebase to avoid push conflicts
+          git pull --rebase origin main
+
+          git push origin HEAD:main
