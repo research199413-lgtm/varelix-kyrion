@@ -2,34 +2,63 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 from io import StringIO
+from pathlib import Path
 import re
 import time
-import logging
-from pathlib import Path
-
-import config
-
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 # =====================================================
-# LOGGING
+# SETTINGS
 # =====================================================
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(message)s"
+
+URL = "https://dps.psx.com.pk/indices"
+
+LOOP_INTERVAL = 10      # seconds
+LOOP_COUNT = 5          # Number of runs
+
+TIMEZONE = ZoneInfo("Asia/Karachi")
+
+# Headers to avoid being blocked
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36"
+    )
+}
+
+# =====================================================
+# OUTPUT FILE (Year / Month / Daily Excel)
+# =====================================================
+
+today = datetime.now(TIMEZONE)
+
+OUTPUT_DIR = (
+    Path("data")
+    / str(today.year)
+    / f"{today.month:02d}"
 )
 
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+OUTPUT_FILE = OUTPUT_DIR / f"{today:%Y-%m-%d}.xlsx"
 
 # =====================================================
-# FETCH DATA
+# FUNCTION
 # =====================================================
+
 def fetch_indices():
 
     response = requests.get(
-        config.URL,
-        headers=config.HEADERS,
+        URL,
+        headers=HEADERS,
         timeout=30
     )
     response.raise_for_status()
+
+    # -----------------------------------------
+    # Extract timestamp
+    # -----------------------------------------
 
     soup = BeautifulSoup(response.text, "html.parser")
     page_text = soup.get_text(" ", strip=True)
@@ -41,21 +70,34 @@ def fetch_indices():
 
     last_update = match.group(1) if match else None
 
+    # -----------------------------------------
+    # Extract table
+    # -----------------------------------------
+
     tables = pd.read_html(StringIO(response.text))
 
     indices_df = None
 
     for df in tables:
+
         cols = [str(c).strip() for c in df.columns]
 
-        if {"Index", "High", "Low", "Current"}.issubset(cols):
+        if (
+            "Index" in cols
+            and "High" in cols
+            and "Low" in cols
+            and "Current" in cols
+        ):
             indices_df = df.copy()
             break
 
     if indices_df is None:
-        raise ValueError("Indices table not found")
+        raise Exception("Indices table not found")
 
-    # remove sector indices
+    # -----------------------------------------
+    # Remove Sector Indices row
+    # -----------------------------------------
+
     indices_df = indices_df[
         ~indices_df["Index"].astype(str).str.contains(
             "Sector Indices",
@@ -64,7 +106,11 @@ def fetch_indices():
         )
     ]
 
-    # clean index name
+    # -----------------------------------------
+    # Clean index names
+    # HBLTTI (18-06-2026 18:30:00) -> HBLTTI
+    # -----------------------------------------
+
     indices_df["Index"] = (
         indices_df["Index"]
         .astype(str)
@@ -72,65 +118,70 @@ def fetch_indices():
         .str.strip()
     )
 
-    # timestamps
+    # -----------------------------------------
+    # Add timestamps
+    # -----------------------------------------
+
     indices_df["last_update"] = last_update
-    indices_df["scraped_at"] = pd.Timestamp.now()
+    indices_df["scraped_at"] = pd.Timestamp.now(tz=TIMEZONE)
 
     return indices_df
 
 
 # =====================================================
-# SAVE DATA
+# LOOP
 # =====================================================
-def save_data(new_df: pd.DataFrame):
 
-    output_path = config.OUTPUT_FILE
-    output_path.parent.mkdir(parents=True, exist_ok=True)
+for run_no in range(1, LOOP_COUNT + 1):
 
-    if output_path.exists():
-        old_df = pd.read_excel(output_path, engine="openpyxl")
+    try:
 
-        combined = pd.concat([old_df, new_df], ignore_index=True)
+        print(f"\nRun {run_no}/{LOOP_COUNT}")
 
-        combined = combined.drop_duplicates(
-            subset=["Index", "last_update"],
-            keep="last"
+        new_df = fetch_indices()
+
+        # -------------------------------------
+        # Append data to today's Excel file
+        # -------------------------------------
+
+        if OUTPUT_FILE.exists():
+
+            old_df = pd.read_excel(
+                OUTPUT_FILE,
+                engine="openpyxl"
+            )
+
+            combined_df = pd.concat(
+                [old_df, new_df],
+                ignore_index=True
+            )
+
+        else:
+
+            combined_df = new_df
+
+        combined_df.to_excel(
+            OUTPUT_FILE,
+            index=False,
+            engine="openpyxl"
         )
-    else:
-        combined = new_df
 
-    combined.to_excel(output_path, index=False, engine="openpyxl")
+        print(f"Saved to: {OUTPUT_FILE}")
+        print(f"Added {len(new_df)} rows")
+        print(f"Total rows: {len(combined_df)}")
+        print(f"Last Update: {new_df['last_update'].iloc[0]}")
 
-    logging.info(
-        f"Saved {len(new_df)} rows | Total: {len(combined)}"
-    )
+    except Exception as e:
 
+        print("ERROR:", e)
 
-# =====================================================
-# MAIN RUN LOOP (LOCAL USE ONLY)
-# =====================================================
-def run_local():
+    # -----------------------------------------
+    # Wait before next run
+    # -----------------------------------------
 
-    for i in range(1, config.LOOP_COUNT + 1):
+    if run_no < LOOP_COUNT:
 
-        try:
-            logging.info(f"Run {i}/{config.LOOP_COUNT}")
+        print(f"Sleeping {LOOP_INTERVAL} seconds...")
+        time.sleep(LOOP_INTERVAL)
 
-            df = fetch_indices()
-            save_data(df)
-
-        except Exception as e:
-            logging.error(f"Error: {e}")
-
-        if i < config.LOOP_COUNT:
-            logging.info(f"Sleeping {config.LOOP_INTERVAL}s")
-            time.sleep(config.LOOP_INTERVAL)
-
-    logging.info("Completed.")
-
-
-# =====================================================
-# ENTRY POINT
-# =====================================================
-if __name__ == "__main__":
-    run_local()
+print("\nCompleted.")
