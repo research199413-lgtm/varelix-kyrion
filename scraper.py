@@ -14,8 +14,8 @@ from zoneinfo import ZoneInfo
 
 URL = "https://dps.psx.com.pk/indices"
 
-LOOP_INTERVAL = 10      # seconds
-LOOP_COUNT = 5          # Number of runs
+LOOP_INTERVAL = 300      # seconds
+LOOP_COUNT = 60        # Number of runs
 
 TIMEZONE = ZoneInfo("Asia/Karachi")
 
